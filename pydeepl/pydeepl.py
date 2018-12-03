@@ -77,6 +77,7 @@ def translate(text, to_lang, from_lang='auto', json=False):
             'jobs': [
                 {
                     'kind':'default',
+                    'quality':'fast',
                     'raw_en_sentence': text
                 }
             ],
@@ -94,6 +95,7 @@ def translate(text, to_lang, from_lang='auto', json=False):
     response = requests.post(BASE_URL, json=parameters).json()
 
     if 'error' in response:
+        print(response)
         if 'message' in response['error']:
             raise TranslationError('DeepL call resulted in an error: '+response['error']['message'])
 
